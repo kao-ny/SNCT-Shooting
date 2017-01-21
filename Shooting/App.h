@@ -16,4 +16,6 @@ public:
 	virtual void draw(void);
 	virtual void keyDown(WPARAM key);
 	virtual void keyUp(WPARAM key);
+	
+	static double rand(void);
 };
