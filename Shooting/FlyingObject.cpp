@@ -3,7 +3,7 @@
 #include "FlyingObject.h"
 
 // Add: ââèK1
-FlyingObject::FlyingObject(void) : x(0), vx(0), y(0), vy(0)
+FlyingObject::FlyingObject(void) : x(0), vx(0), y(0), vy(0), radius(0), status(0)
 {
 }
 

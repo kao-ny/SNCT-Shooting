@@ -11,9 +11,19 @@ protected:
 	// Add: 演習1
 	double vy;
 
+	double radius;	// 半径
+	Timer mtimer;	// 移動経路計算用
+
 	Timer lap;		// 前回のupdateからの経過時間計測用
 
 public:
+	unsigned int status;	// 状態フラグ
+
+	enum STATUS {
+		ACTIVE = 1,		// アクティブ (update()やdraw()を呼ぶ)
+		COLLISION = 2	// 衝突状態
+	};
+
 	FlyingObject(void);
 	virtual ~FlyingObject(void);
 
