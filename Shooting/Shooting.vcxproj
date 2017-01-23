@@ -148,6 +148,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyA.h" />
+    <ClInclude Include="EnemyB.h" />
     <ClInclude Include="Fighter.h" />
     <ClInclude Include="FlyingObject.h" />
     <ClInclude Include="Missile.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyA.cpp" />
+    <ClCompile Include="EnemyB.cpp" />
     <ClCompile Include="Fighter.cpp" />
     <ClCompile Include="FlyingObject.cpp" />
     <ClCompile Include="Missile.cpp" />

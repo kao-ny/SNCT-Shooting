@@ -2,17 +2,17 @@
 #define _USE_MATH_DEFINES	// Visual C++‚ÅM_PI‚ðŽg‚¦‚é‚æ‚¤‚É
 #include <cmath>
 #include "ShootingApp.h"
-#include "EnemyA.h"
+#include "EnemyB.h"
 
-EnemyA::EnemyA(void) : Enemy()
+EnemyB::EnemyB(void) : Enemy()
 {
 }
 
-EnemyA::~EnemyA(void)
+EnemyB::~EnemyB(void)
 {
 }
 
-void EnemyA::init(void)
+void EnemyB::init(void)
 {
 	FlyingObject::init();
 
@@ -25,9 +25,10 @@ void EnemyA::init(void)
 	vy = 100 + 200 * App::rand();
 
 	radius = 30;
+	status = STATUS::ACTIVE;
 }
 
-void EnemyA::update(void)
+void EnemyB::update(void)
 {
 	double dt = lap.get();
 	double mt = mtimer.get();
@@ -46,10 +47,10 @@ void EnemyA::update(void)
 	lap.reset();
 }
 
-void EnemyA::draw(void)
+void EnemyB::draw(void)
 {
-	HPEN bp = CreatePen(PS_SOLID, 0.5, RGB(0, 0, 255));
-	SelectObject(App::hDC, bp);
+	HPEN gp = CreatePen(PS_SOLID, 0.5, RGB(0, 255, 0));
+	SelectObject(App::hDC, gp);
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
-	DeleteObject(bp);
+	DeleteObject(gp);
 }

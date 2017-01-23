@@ -8,6 +8,10 @@ void ShootingApp::init(void) {
 		enemyA[i].init();
 		fos.push_back(&enemyA[i]);
 	}
+	for (size_t i = 0; i < N_ENEMY_B; i++) {
+		enemyB[i].init();
+		fos.push_back(&enemyB[i]);
+	}
 	for (size_t i = 0; i < N_MISSILE; i++) {
 		fighter.loadMissile(&missile[i]);
 		fos.push_back(&missile[i]);
