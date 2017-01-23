@@ -15,9 +15,11 @@ void Fighter::init(void)
 	FlyingObject::init();
 
 	x = 400;
+	y = 400;
 	vx = 200;
 	// Add: ââèK1
 	vy = 200;
+	radius = 50;
 }
 
 void Fighter::cleanup(void)
@@ -54,9 +56,16 @@ void Fighter::draw(void)
 {
 	LPCWSTR c;
 
-	c = TEXT("*");
-	// Add: ââèK1
-	TextOut(App::hDC, (int) x, y, c, lstrlen(c));
+	RECT objArea;
+	objArea.left = x - radius;
+	objArea.top = y-30;
+	objArea.right = x + radius;
+	objArea.bottom = y+30;
+
+	DrawText(App::hDC, L"|\n--+--\n-+-", -1, &objArea, DT_CENTER);
+
+	drawDebug();
+	
 }
 
 

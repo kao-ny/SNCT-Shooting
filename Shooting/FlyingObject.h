@@ -31,5 +31,6 @@ public:
 	virtual void cleanup(void);
 	virtual void update(void);
 	virtual void draw(void);
+	virtual void drawDebug(void);
 };
 

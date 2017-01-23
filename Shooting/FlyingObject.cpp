@@ -39,3 +39,10 @@ void FlyingObject::update(void)
 void FlyingObject::draw(void)
 {
 }
+
+void FlyingObject::drawDebug(void) {
+	HPEN hpen = CreatePen(PS_DASH, 0.5, RGB(255, 0, 0));
+	SelectObject(App::hDC, hpen);
+	SelectObject(App::hDC, GetStockObject(NULL_BRUSH));
+	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
+}
