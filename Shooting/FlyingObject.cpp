@@ -20,10 +20,16 @@ void FlyingObject::init(void)
 	y = 0;
 	vy = 0;
 	lap.reset();
+
+	radius = 0;
+	status = ACTIVE;
+	mtimer.reset();
+
 }
 
 void FlyingObject::cleanup(void)
 {
+	status = 0;
 }
 
 void FlyingObject::update(void)
