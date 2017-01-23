@@ -3,18 +3,27 @@
 
 void ShootingApp::init(void) {
 	fighter.init();
+	enemyA[0].init();
+	enemyA[1].init();
+
 }
 
 void ShootingApp::cleanup(void) {
 	fighter.cleanup();
+	enemyA[0].cleanup();
+	enemyA[1].cleanup();
 }
 
 void ShootingApp::update(void) {
 	fighter.update();
+	enemyA[0].update();
+	enemyA[1].update();
 }
 
 void ShootingApp::draw(void) {
 	fighter.draw();
+	enemyA[0].draw();
+	enemyA[1].draw();
 }
 
 void ShootingApp::keyDown(WPARAM key) {
