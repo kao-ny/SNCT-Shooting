@@ -3,6 +3,7 @@
 #include "Fighter.h"
 #include "EnemyA.h"
 #include "Missile.h"
+#include <vector>
 
 #define N_ENEMY_A 2
 #define N_MISSILE 10
@@ -12,6 +13,7 @@ private:
 	Fighter fighter;
 	EnemyA enemyA[N_ENEMY_A];
 	Missile missile[N_MISSILE];
+	std::vector<FlyingObject*> fos;
 public:
 	ShootingApp();
 	~ShootingApp();

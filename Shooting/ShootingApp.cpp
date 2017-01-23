@@ -3,36 +3,33 @@
 
 void ShootingApp::init(void) {
 	fighter.init();
-	enemyA[0].init();
-	enemyA[1].init();
+	fos.push_back(&fighter); // fosに&fighterを追加
+	for (size_t i = 0; i < N_ENEMY_A; i++) {
+		enemyA[i].init();
+		fos.push_back(&enemyA[i]);
+	}
+	for (size_t i = 0; i < N_MISSILE; i++)
+		fos.push_back(&missile[i]);
 
 }
 
 void ShootingApp::cleanup(void) {
-	fighter.cleanup();
-	enemyA[0].cleanup();
-	enemyA[1].cleanup();
-	for (int i = 0;i < 10;i++) {
-		missile[i].cleanup();
-	}
+	for (size_t i = 0; i < fos.size(); i++) // fos.size() : fosの要素の個数
+		fos[i]->cleanup(); // 配列のようにi番目の要素をfos[i]とアクセスできる
+	fos.clear();
+
 }
 
 void ShootingApp::update(void) {
-	fighter.update();
-	enemyA[0].update();
-	enemyA[1].update();
-	for (int i = 0;i < 10;i++) {
-		missile[i].update();
-	}
+	for (size_t i = 0; i < fos.size(); i++)
+		if (fos[i]->status & FlyingObject::ACTIVE) // アクティブなFlyingObjectだけupdate
+			fos[i]->update();
 }
 
 void ShootingApp::draw(void) {
-	fighter.draw();
-	enemyA[0].draw();
-	enemyA[1].draw();
-	for (int i = 0;i < 10;i++) {
-		missile[i].draw();
-	}
+	for (size_t i = 0; i < fos.size(); i++)
+		if (fos[i]->status & FlyingObject::ACTIVE) // アクティブなFlyingObjectだけdraw
+			fos[i]->draw();
 }
 
 void ShootingApp::keyDown(WPARAM key) {
