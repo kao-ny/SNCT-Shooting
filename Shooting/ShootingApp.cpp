@@ -12,27 +12,18 @@ void ShootingApp::cleanup(void) {
 	fighter.cleanup();
 	enemyA[0].cleanup();
 	enemyA[1].cleanup();
-	for (int i = 0;i < 10;i++) {
-		missile[i].cleanup();
-	}
 }
 
 void ShootingApp::update(void) {
 	fighter.update();
 	enemyA[0].update();
 	enemyA[1].update();
-	for (int i = 0;i < 10;i++) {
-		missile[i].update();
-	}
 }
 
 void ShootingApp::draw(void) {
 	fighter.draw();
 	enemyA[0].draw();
 	enemyA[1].draw();
-	for (int i = 0;i < 10;i++) {
-		missile[i].draw();
-	}
 }
 
 void ShootingApp::keyDown(WPARAM key) {
