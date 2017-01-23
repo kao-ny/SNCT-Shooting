@@ -1,9 +1,12 @@
 #pragma once
 #include "FlyingObject.h"
+#include <vector>
+#include "Missile.h"
 
 class Fighter : public FlyingObject
 {
 	unsigned int dir;		// 現在の移動方向
+	std::vector<Missile*> missiles;
 
 public:
 	enum DIRECTION {
@@ -24,5 +27,8 @@ public:
 
 	void move(DIRECTION dir);
 	void stop(DIRECTION dir);
+	
+	void loadMissile(Missile* m); // ミサイルmを登録する
+	void shoot(void); // ミサイルを発射する
 };
 

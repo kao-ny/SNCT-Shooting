@@ -3,10 +3,10 @@
 #include "Fighter.h"
 #include "EnemyA.h"
 #include "Missile.h"
-#include <vector>
+#include <vector>
 
 #define N_ENEMY_A 2
-#define N_MISSILE 10
+#define N_MISSILE 100
 
 class ShootingApp : public App {
 private:
