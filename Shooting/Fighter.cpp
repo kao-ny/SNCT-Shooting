@@ -25,13 +25,17 @@ void Fighter::init(void)
 void Fighter::cleanup(void)
 {
 	FlyingObject::cleanup();
-	FlyingObject::cleanup();
 	missilesA.clear();
 }
 
 void Fighter::loadMissileA(MissileA* m)
 {
 	missilesA.push_back(m);
+}
+
+void Fighter::loadMissileB(MissileB* m)
+{
+	missilesB.push_back(m);
 }
 
 void Fighter::update(void)
@@ -92,6 +96,16 @@ void Fighter::shootA(void)
 		if (!(missilesA[i]->status & ACTIVE)) {
 			missilesA[i]->init();
 			missilesA[i]->fire(x, y - radius, 0, -400);
+			return;
+		}
+}
+
+void Fighter::shootB(void)
+{
+	for(size_t i = 0; i < missilesB.size(); i++)
+		if(!(missilesB[i]->status & ACTIVE)) {
+			missilesB[i]->init();
+			missilesB[i]->fire(x, y - radius, 0, -400);
 			return;
 		}
 }
