@@ -6,9 +6,5 @@ class Missile :
 public:
 	Missile();
 	~Missile();
-	void init(void);
-	void update(void);
-	void draw(void);
-	void fire(double x, double y, double vx, double vy);
 };
 

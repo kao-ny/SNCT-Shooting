@@ -12,9 +12,9 @@ void ShootingApp::init(void) {
 		enemyB[i].init();
 		fos.push_back(&enemyB[i]);
 	}
-	for (size_t i = 0; i < N_MISSILE; i++) {
-		fighter.loadMissile(&missile[i]);
-		fos.push_back(&missile[i]);
+	for (size_t i = 0; i < N_MISSILE_A; i++) {
+		fighter.loadMissileA(&missileA[i]);
+		fos.push_back(&missileA[i]);
 	}
 
 }
@@ -54,7 +54,7 @@ void ShootingApp::keyDown(WPARAM key) {
 		fighter.move(Fighter::BACK);
 		break;
 	case VK_SPACE:
-		fighter.shoot();
+		fighter.shootA();
 		break;
 	}
 }

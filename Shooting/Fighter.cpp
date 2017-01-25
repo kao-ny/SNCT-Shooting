@@ -26,12 +26,12 @@ void Fighter::cleanup(void)
 {
 	FlyingObject::cleanup();
 	FlyingObject::cleanup();
-	missiles.clear();
+	missilesA.clear();
 }
 
-void Fighter::loadMissile(Missile* m)
+void Fighter::loadMissileA(MissileA* m)
 {
-	missiles.push_back(m);
+	missilesA.push_back(m);
 }
 
 void Fighter::update(void)
@@ -86,12 +86,12 @@ void Fighter::stop(DIRECTION dir)
 	this->dir &= ~dir;
 }
 
-void Fighter::shoot(void)
+void Fighter::shootA(void)
 {
-	for (size_t i = 0; i < missiles.size(); i++)
-		if (!(missiles[i]->status & ACTIVE)) {
-			missiles[i]->init();
-			missiles[i]->fire(x, y - radius, 0, -400);
+	for (size_t i = 0; i < missilesA.size(); i++)
+		if (!(missilesA[i]->status & ACTIVE)) {
+			missilesA[i]->init();
+			missilesA[i]->fire(x, y - radius, 0, -400);
 			return;
 		}
 }

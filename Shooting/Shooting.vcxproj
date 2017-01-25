@@ -152,6 +152,7 @@
     <ClInclude Include="Fighter.h" />
     <ClInclude Include="FlyingObject.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="MissileA.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shooting.h" />
     <ClInclude Include="ShootingApp.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Fighter.cpp" />
     <ClCompile Include="FlyingObject.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="MissileA.cpp" />
     <ClCompile Include="Shooting.cpp" />
     <ClCompile Include="ShootingApp.cpp" />
     <ClCompile Include="stdafx.cpp">
