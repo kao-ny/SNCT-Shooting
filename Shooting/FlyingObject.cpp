@@ -72,7 +72,7 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 }
 
 void FlyingObject::drawExplosion(void)
-{ // 各自オリジナルの爆発アニメーションを作ること。
+{ // TODO: 各自オリジナルの爆発アニメーションを作ること。
 	LPCWSTR c;
 	double t = mtimer.get(); // 衝突してからの経過時間
 	if (t > 0.4) {
