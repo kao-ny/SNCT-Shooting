@@ -58,13 +58,13 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 		return false; // falseを返す
 
 	if (!(status & COLLISION)) { // 自分の衝突フラグがセットされていなければ、
-		status = COLLISION; // 自分の衝突フラグをセット
+		status |= COLLISION; // 自分の衝突フラグをセット
 		etimer.reset(); // 自分の衝突アニメーション用タイマーリセット
 	}
 
 	// TODO
 	if (!(fo->status & COLLISION)) { // 相手の衝突フラグがセットされていなければ、
-		fo->status = COLLISION; // 相手の衝突フラグをセット
+		fo->status |= COLLISION; // 相手の衝突フラグをセット
 		fo->etimer.reset(); // 相手の衝突アニメーション用タイマーリセット
 	}
 

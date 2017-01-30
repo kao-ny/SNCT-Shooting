@@ -32,7 +32,7 @@ void EnemyA::init(void)
 void EnemyA::update(void)
 {
 	if (status & COLLISION) { // 衝突していたら座標を更新しない
-		if (etimer.get() > 1000000.0) // 衝突期間が終わったら、
+		if (etimer.get() >0.50) // 衝突期間が終わったら、
 			cleanup(); // 終了手続き
 		return;
 	}
