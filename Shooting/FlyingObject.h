@@ -1,6 +1,8 @@
 #pragma once
 #include "Timer.h"
 
+#define sqr(x) ((x)*(x))
+
 class FlyingObject
 {
 protected:
@@ -32,5 +34,7 @@ public:
 	virtual void update(void);
 	virtual void draw(void);
 	virtual void drawDebug(void);
+
+	bool FlyingObject::checkCollision(FlyingObject* fo);
 };
 

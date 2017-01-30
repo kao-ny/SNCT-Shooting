@@ -47,3 +47,26 @@ void FlyingObject::drawDebug(void) {
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
 	DeleteObject(rp);
 }
+
+#define sqr(x) ((x)*(x))
+bool FlyingObject::checkCollision(FlyingObject* fo)
+{
+	if (!(fo->status & ACTIVE)) // 判定相手がアクティブでなければ
+		return false; // falseを返す
+
+	if (!(fo->status & COLLISION))
+		return false; // falseを返す
+
+	if (!(status & COLLISION)) { // 自分の衝突フラグがセットされていなければ、
+		status = COLLISION; // 自分の衝突フラグをセット
+		mtimer.reset(); // 自分の衝突アニメーション用タイマーリセット
+	}
+
+	// TODO
+	if (!(fo->status & COLLISION)) { // 相手の衝突フラグがセットされていなければ、
+		fo->status = COLLISION; // 相手の衝突フラグをセット
+		fo->mtimer.reset(); // 相手の衝突アニメーション用タイマーリセット
+	}
+
+	return true;
+}
