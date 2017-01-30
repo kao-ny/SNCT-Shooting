@@ -36,5 +36,6 @@ public:
 	virtual void drawDebug(void);
 
 	bool FlyingObject::checkCollision(FlyingObject* fo);
+	void drawExplosion(void);
 };
 

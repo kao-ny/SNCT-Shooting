@@ -70,3 +70,25 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 
 	return true;
 }
+
+void FlyingObject::drawExplosion(void)
+{ // 各自オリジナルの爆発アニメーションを作ること。
+	LPCWSTR c;
+	double t = mtimer.get(); // 衝突してからの経過時間
+	if (t > 0.4) {
+		c = TEXT("*");
+		TextOut(App::hDC, (int)x - 5, (int)y - 5, c, lstrlen(c));
+	}
+	else if (t > 0.3) {
+		c = TEXT("***");
+		TextOut(App::hDC, (int)x - 15, (int)y - 5, c, lstrlen(c));
+	}
+	else if (t > 0.1) {
+		c = TEXT("(***)");
+		TextOut(App::hDC, (int)x - 25, (int)y - 5, c, lstrlen(c));
+	}
+	else {
+		c = TEXT("(*)");
+		TextOut(App::hDC, (int)x - 15, (int)y - 5, c, lstrlen(c));
+	}
+}
