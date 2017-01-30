@@ -54,18 +54,18 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 	if (!(fo->status & ACTIVE)) // 判定相手がアクティブでなければ
 		return false; // falseを返す
 
-	if (!(fo->status & COLLISION))
+	if (sqr(fo->x-this->x)+sqr(fo->y-this->y)>=(this->radius+fo->radius))
 		return false; // falseを返す
 
 	if (!(status & COLLISION)) { // 自分の衝突フラグがセットされていなければ、
 		status = COLLISION; // 自分の衝突フラグをセット
-		mtimer.reset(); // 自分の衝突アニメーション用タイマーリセット
+		etimer.reset(); // 自分の衝突アニメーション用タイマーリセット
 	}
 
 	// TODO
 	if (!(fo->status & COLLISION)) { // 相手の衝突フラグがセットされていなければ、
 		fo->status = COLLISION; // 相手の衝突フラグをセット
-		fo->mtimer.reset(); // 相手の衝突アニメーション用タイマーリセット
+		fo->etimer.reset(); // 相手の衝突アニメーション用タイマーリセット
 	}
 
 	return true;
@@ -74,7 +74,7 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 void FlyingObject::drawExplosion(void)
 { // TODO: 各自オリジナルの爆発アニメーションを作ること。
 	LPCWSTR c;
-	double t = mtimer.get(); // 衝突してからの経過時間
+	double t = etimer.get(); // 衝突してからの経過時間
 	if (t > 0.4) {
 		c = TEXT("*");
 		TextOut(App::hDC, (int)x - 5, (int)y - 5, c, lstrlen(c));
@@ -91,4 +91,4 @@ void FlyingObject::drawExplosion(void)
 		c = TEXT("(*)");
 		TextOut(App::hDC, (int)x - 15, (int)y - 5, c, lstrlen(c));
 	}
-}
+}

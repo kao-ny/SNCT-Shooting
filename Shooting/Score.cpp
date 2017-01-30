@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Score.h"
+#include <string>
+#include "ShootingApp.h"
 
 
 Score::Score()
@@ -20,5 +22,6 @@ void Score::add(int point) {
 }
 
 void Score::draw(int x, int y) {
-
+	std::wstring msg = TEXT("Score : ") + std::to_wstring(score);
+	TextOut(App::hDC, x, y, msg.c_str(), lstrlen(msg.c_str()));
 }

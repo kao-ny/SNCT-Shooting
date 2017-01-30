@@ -20,7 +20,7 @@ void MissileA::init(void)
 }
 void MissileA::update(void)
 {
-	if(x < 0 || x > 799 || y < 0 || y > 599) // 画面からはみ出たら、ミサイルはなくなる。
+	if(x < 0 || x > 1023 || y < 0 || y > 767) // 画面からはみ出たら、ミサイルはなくなる。
 		cleanup();
 	double dt = lap.get();
 	x += vx * dt;

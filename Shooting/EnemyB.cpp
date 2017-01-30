@@ -32,6 +32,12 @@ void EnemyB::init(void)
 
 void EnemyB::update(void)
 {
+	if (status & COLLISION) { // 衝突していたら座標を更新しない
+		if (etimer.get() > 100000000000.0) // 衝突期間が終わったら、
+			cleanup(); // 終了手続き
+		return;
+	}
+
 	double dt = lap.get();
 	double mt = mtimer.get();
 	double dx, dy;
@@ -51,8 +57,13 @@ void EnemyB::update(void)
 
 void EnemyB::draw(void)
 {
+	if (this->status & COLLISION) { // 衝突していたら爆発アニメーション
+		drawExplosion();
+		return;
+	}
+
 	HPEN gp = CreatePen(PS_SOLID, 0.5, RGB(0, 255, 0));
 	SelectObject(App::hDC, gp);
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
-	DeleteObject(gp);
+	DeleteObject(gp);
 }

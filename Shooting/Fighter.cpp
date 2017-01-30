@@ -40,6 +40,12 @@ void Fighter::loadMissileB(MissileB* m)
 
 void Fighter::update(void)
 {
+	if (status & COLLISION) { // 衝突していたら座標を更新しない
+		if (etimer.get() > 0.5) // 衝突期間が終わったら、
+			cleanup(); // 終了手続き
+		return;
+	}
+
 	FlyingObject::update();
 
 	double dx = 0;
@@ -67,6 +73,11 @@ void Fighter::draw(void)
 {
 	LPCWSTR c;
 
+	if (status & COLLISION) { // 衝突していたら爆発アニメーション
+		drawExplosion();
+		return;
+	}
+
 	RECT objArea;
 	objArea.left = x - radius;
 	objArea.top = y-30;
@@ -75,8 +86,7 @@ void Fighter::draw(void)
 
 	DrawText(App::hDC, L"|\n--+--\n-+-", -1, &objArea, DT_CENTER);
 
-	drawDebug();
-	
+	drawDebug();	
 }
 
 

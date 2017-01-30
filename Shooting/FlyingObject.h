@@ -15,7 +15,7 @@ protected:
 
 	double radius;	// 半径
 	Timer mtimer;	// 移動経路計算用
-
+	Timer etimer;	// 爆発アニメーション用タイマー
 	Timer lap;		// 前回のupdateからの経過時間計測用
 
 public:

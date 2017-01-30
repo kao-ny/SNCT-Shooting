@@ -5,6 +5,7 @@
 #include "EnemyB.h"
 #include "MissileA.h"
 #include "MissileB.h"
+#include "Score.h"
 #include <vector>
 
 #define N_ENEMY_A 2
@@ -20,6 +21,10 @@ private:
 	MissileA missileA[N_MISSILE_A];
 	MissileB missileB[N_MISSILE_B];
 	std::vector<FlyingObject*> fos;
+	std::vector<Enemy*> enemies;
+	std::vector<Missile*> missiles;
+	Score score;
+
 public:
 	ShootingApp();
 	~ShootingApp();

@@ -1,45 +1,62 @@
 #include "stdafx.h"
 #include "ShootingApp.h"
+#include <string>
 
 void ShootingApp::init(void) {
 	fighter.init();
 	fos.push_back(&fighter); // fosに&fighterを追加
 	for (size_t i = 0; i < N_ENEMY_A; i++) {
 		enemyA[i].init();
+		enemies.push_back(&enemyA[i]);
 		fos.push_back(&enemyA[i]);
 	}
 	for (size_t i = 0; i < N_ENEMY_B; i++) {
 		enemyB[i].init();
+		enemies.push_back(&enemyB[i]);
 		fos.push_back(&enemyB[i]);
 	}
 	for (size_t i = 0; i < N_MISSILE_A; i++) {
 		fighter.loadMissileA(&missileA[i]);
+		missiles.push_back(&missileA[i]);
 		fos.push_back(&missileA[i]);
 	}
 	for(size_t i = 0; i < N_MISSILE_B; i++) {
 		fighter.loadMissileB(&missileB[i]);
+		missiles.push_back(&missileB[i]);
 		fos.push_back(&missileB[i]);
 	}
-
+	score.init();
 }
 
 void ShootingApp::cleanup(void) {
 	for (size_t i = 0; i < fos.size(); i++) // fos.size() : fosの要素の個数
 		fos[i]->cleanup(); // 配列のようにi番目の要素をfos[i]とアクセスできる
 	fos.clear();
-
+	enemies.clear();
+	missiles.clear();
 }
 
 void ShootingApp::update(void) {
 	for (size_t i = 0; i < fos.size(); i++)
 		if (fos[i]->status & FlyingObject::ACTIVE) // アクティブなFlyingObjectだけupdate
 			fos[i]->update();
+
+	// 衝突判定
+	for (size_t i = 0; i < enemies.size(); i++) { // すべての敵機について衝突判定
+		if (!(enemies[i]->status & FlyingObject::ACTIVE)) // アクティブでなければ
+			continue; // 判定しない
+		for (size_t j = 0; j < missiles.size(); j++) // すべてのミサイルについて
+			if (enemies[i]->checkCollision(missiles[j])) // 衝突していたら
+				score.add(enemies[i]->point);
+				enemies[i]->checkCollision(&fighter); // 自機との衝突判定
+	}
 }
 
 void ShootingApp::draw(void) {
 	for (size_t i = 0; i < fos.size(); i++)
 		if (fos[i]->status & FlyingObject::ACTIVE) // アクティブなFlyingObjectだけdraw
 			fos[i]->draw();
+	score.draw(800, 600);
 }
 
 void ShootingApp::keyDown(WPARAM key) {
