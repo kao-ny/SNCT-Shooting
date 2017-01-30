@@ -4,6 +4,7 @@
 
 Enemy::Enemy()
 {
+	point = 0;
 }
 
 

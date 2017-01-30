@@ -26,6 +26,8 @@ void EnemyB::init(void)
 
 	radius = 30;
 	status = STATUS::ACTIVE;
+
+	point = 765;
 }
 
 void EnemyB::update(void)
