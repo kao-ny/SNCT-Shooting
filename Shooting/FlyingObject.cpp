@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ShootingApp.h"
 #include "FlyingObject.h"
+#include <cmath>
 
 // Add: 演習1
 FlyingObject::FlyingObject(void) : x(0), vx(0), y(0), vy(0), radius(0), status(0)
@@ -54,7 +55,7 @@ bool FlyingObject::checkCollision(FlyingObject* fo)
 	if (!(fo->status & ACTIVE)) // 判定相手がアクティブでなければ
 		return false; // falseを返す
 
-	if (sqr(fo->x-this->x)+sqr(fo->y-this->y)>=(this->radius+fo->radius))
+	if (sqr(fo->x-this->x)+sqr(fo->y-this->y)>=sqr(this->radius+fo->radius))
 		return false; // falseを返す
 
 	if (!(status & COLLISION)) { // 自分の衝突フラグがセットされていなければ、
