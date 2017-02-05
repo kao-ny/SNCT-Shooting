@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ShootingApp.h"
 #include "Fighter.h"
+#include "Sound.h"
 
 Fighter::Fighter(void) : FlyingObject(), dir(STOP)
 {
@@ -107,6 +108,7 @@ void Fighter::shootA(void)
 		if (!(missilesA[i]->status & ACTIVE)) {
 			missilesA[i]->init();
 			missilesA[i]->fire(x, y - radius, 0, -400);
+			Sound::getInstance()->request(TEXT("shoot"));
 			return;
 		}
 }
@@ -117,6 +119,7 @@ void Fighter::shootB(void)
 		if(!(missilesB[i]->status & ACTIVE)) {
 			missilesB[i]->init();
 			missilesB[i]->fire(x, y - radius, 0, -400);
+			Sound::getInstance()->request(TEXT("shoot"));
 			return;
 		}
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ShootingApp.h"
 #include <string>
+#include "Sound.h"
 
 void ShootingApp::init(void) {
 	fighter.init();
@@ -26,6 +27,11 @@ void ShootingApp::init(void) {
 		fos.push_back(&missileB[i]);
 	}
 	score.init();
+	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/chimes.wav"), TEXT("explosion"));
+	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/ir_begin.wav"), TEXT("shoot"));
+	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/flourish.mid"), TEXT("bgm"));
+
+	Sound::getInstance()->request(TEXT("bgm"));
 }
 
 void ShootingApp::cleanup(void) {
@@ -34,6 +40,7 @@ void ShootingApp::cleanup(void) {
 	fos.clear();
 	enemies.clear();
 	missiles.clear();
+	Sound::getInstance()->cleanup();
 }
 
 void ShootingApp::update(void) {
@@ -69,6 +76,7 @@ void ShootingApp::draw(void) {
 		if (fos[i]->status & FlyingObject::ACTIVE) // アクティブなFlyingObjectだけdraw
 			fos[i]->draw();
 	score.draw(800, 600);
+	Sound::getInstance()->play();
 }
 
 void ShootingApp::keyDown(WPARAM key) {

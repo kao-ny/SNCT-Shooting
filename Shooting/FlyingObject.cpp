@@ -2,6 +2,7 @@
 #include "ShootingApp.h"
 #include "FlyingObject.h"
 #include <cmath>
+#include "Sound.h"
 
 // Add: ‰‰K1
 FlyingObject::FlyingObject(void) : x(0), vx(0), y(0), vy(0), radius(0), status(0)
@@ -89,6 +90,7 @@ void FlyingObject::drawExplosion(void)
 		TextOut(App::hDC, (int)x - 25, (int)y - 5, c, lstrlen(c));
 	}
 	else {
+		Sound::getInstance()->request(TEXT("explosion"));
 		c = TEXT("(*)");
 		TextOut(App::hDC, (int)x - 15, (int)y - 5, c, lstrlen(c));
 	}
