@@ -44,7 +44,8 @@ void Fighter::update(void)
 		if (etimer.get() > 0.5) // Õ“ËŠúŠÔ‚ªI‚í‚Á‚½‚çA
 			cleanup(); // I—¹è‘±‚«
 		return;
-	}
+	}
+
 
 	FlyingObject::update();
 

@@ -49,7 +49,19 @@ void ShootingApp::update(void) {
 			if (enemies[i]->checkCollision(missiles[j])) // 衝突していたら
 				score.add(enemies[i]->point);
 				enemies[i]->checkCollision(&fighter); // 自機との衝突判定
-	}
+	}
+	// キャラクターの再アクティブ化
+	for(size_t i = 0; i < enemies.size(); i++) {
+		if(!enemies[i]->status) {		// 敵機がやられたら（アクティブでなければ）
+			enemies[i]->init();			// 初期化してアクティブ化
+		}	
+	}
+
+	// ゲームの再開
+	if(!fighter.status) {		// 自機がやられたら
+		cleanup();			// ゲームオーバー（終了手続き）
+		init();				// ゲームスタート（初期化手続き）
+	}
 }
 
 void ShootingApp::draw(void) {
