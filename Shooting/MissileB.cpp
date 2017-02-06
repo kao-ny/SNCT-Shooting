@@ -29,7 +29,7 @@ void MissileB::update(void)
 }
 void MissileB::draw(void)
 {
-	HPEN bp = CreatePen(PS_SOLID, 0.5, RGB(255, 255, 0));
+	HPEN bp = CreatePen(PS_SOLID, 0.5, RGB(20, 20, 255));
 	SelectObject(App::hDC, bp);
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
 	DeleteObject(bp);

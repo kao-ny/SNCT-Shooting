@@ -131,7 +131,15 @@ void Fighter::shootB(void)
 	for(size_t i = 0; i < missilesB.size(); i++)
 		if(!(missilesB[i]->status & ACTIVE)) {
 			missilesB[i]->init();
-			missilesB[i]->fire(x, y - radius, 0, -400);
+			missilesB[i+1]->init();
+			missilesB[i+2]->init();
+			missilesB[i + 3]->init();
+			missilesB[i + 4]->init();
+			missilesB[i]->fire(x, y - radius, 150 * App::rand(), -1200 * App:: rand());
+			missilesB[i+1]->fire(x-20, y - radius, -20, -450);
+			missilesB[i+2]->fire(x+20, y - radius, +20, -450);
+			missilesB[i + 3]->fire(x - 40, y - radius, -40, -450);
+			missilesB[i + 4]->fire(x + 40, y - radius, +40, -450);
 			Sound::getInstance()->request(TEXT("shoot"));
 			return;
 		}
