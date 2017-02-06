@@ -128,7 +128,7 @@ void Fighter::shootA(void)
 
 void Fighter::shootB(void)
 {
-	for(size_t i = 0; i < missilesB.size(); i++)
+	for(size_t i = 0; i < missilesB.size()-5; i++)
 		if(!(missilesB[i]->status & ACTIVE)) {
 			missilesB[i]->init();
 			missilesB[i+1]->init();
