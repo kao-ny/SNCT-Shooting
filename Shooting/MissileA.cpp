@@ -29,10 +29,33 @@ void MissileA::update(void)
 }
 void MissileA::draw(void)
 {
+	/*
 	HPEN bp = CreatePen(PS_SOLID, 0.5, RGB(0, 255, 255));
 	SelectObject(App::hDC, bp);
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
 	DeleteObject(bp);
+	*/
+
+	RECT objArea;
+	objArea.left = x - 18;
+	objArea.top = y - 18;
+	objArea.right = x + 18;
+	objArea.bottom = y + 18;
+
+	HFONT defFont = CreateFont(18, 0, 0, 0, FW_DONTCARE,
+		FALSE, FALSE, FALSE, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
+		TEXT("ÇlÇr ÇoÉSÉVÉbÉN"));
+
+	SelectObject(App::hDC, defFont);
+	SetTextColor(App::hDC, RGB(20, 255, 20));
+
+	DrawText(App::hDC, L"|\nÅ£", -1, &objArea, DT_CENTER);
+	//drawDebug();
+
+
+	DeleteObject(defFont);
 }
 void MissileA::fire(double x, double y, double vx, double vy)
 {

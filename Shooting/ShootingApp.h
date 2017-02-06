@@ -9,7 +9,7 @@
 #include <vector>
 
 #define N_ENEMY_A 2
-#define N_ENEMY_B 3
+#define N_ENEMY_B 7
 #define N_MISSILE_A 100
 #define N_MISSILE_B 100
 

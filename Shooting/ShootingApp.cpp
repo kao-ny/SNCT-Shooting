@@ -55,7 +55,7 @@ void ShootingApp::update(void) {
 		for (size_t j = 0; j < missiles.size(); j++) // すべてのミサイルについて
 			if (enemies[i]->checkCollision(missiles[j])) // 衝突していたら
 				score.add(enemies[i]->point);
-				enemies[i]->checkCollision(&fighter); // 自機との衝突判定
+		enemies[i]->checkCollision(&fighter); // 自機との衝突判定
 	}
 	// キャラクターの再アクティブ化
 	for(size_t i = 0; i < enemies.size(); i++) {

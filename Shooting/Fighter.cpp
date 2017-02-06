@@ -15,18 +15,19 @@ void Fighter::init(void)
 {
 	FlyingObject::init();
 
-	x = 400;
-	y = 400;
+	x = 425;
+	y = 600;
 	vx = 200;
 	// Add: ââèK1
 	vy = 200;
-	radius = 50;
+	radius = 20;
 }
 
 void Fighter::cleanup(void)
 {
 	FlyingObject::cleanup();
 	missilesA.clear();
+	missilesB.clear();
 }
 
 void Fighter::loadMissileA(MissileA* m)
@@ -81,14 +82,26 @@ void Fighter::draw(void)
 	}
 
 	RECT objArea;
-	objArea.left = x - radius;
+	objArea.left = x - 60;
 	objArea.top = y-30;
-	objArea.right = x + radius;
+	objArea.right = x + 60;
 	objArea.bottom = y+30;
 
-	DrawText(App::hDC, L"|\n--+--\n-+-", -1, &objArea, DT_CENTER);
+	HFONT defFont = CreateFont(20, 0, 0, 0, FW_DONTCARE,
+		FALSE, FALSE, FALSE, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
+		TEXT("åπÉmäpÉSÉVÉbÉN Code JP"));
 
-	drawDebug();	
+	SelectObject(App::hDC, defFont);
+
+	//DrawText(App::hDC, L"|\n--+--\n-+-", -1, &objArea, DT_CENTER);
+	DrawText(App::hDC, L"ÅøÅø		\nÅR(ÅLÅ[ÅM)Ém\n		ÅiÅQÅQ_Åj		", -1, &objArea, DT_CENTER);
+
+
+	DeleteObject(defFont);
+
+	// drawDebug();	
 }
 
 
@@ -107,7 +120,7 @@ void Fighter::shootA(void)
 	for (size_t i = 0; i < missilesA.size(); i++)
 		if (!(missilesA[i]->status & ACTIVE)) {
 			missilesA[i]->init();
-			missilesA[i]->fire(x, y - radius, 0, -400);
+			missilesA[i]->fire(x, y - radius, 0, -300);
 			Sound::getInstance()->request(TEXT("shoot"));
 			return;
 		}
