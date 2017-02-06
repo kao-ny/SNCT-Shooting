@@ -51,7 +51,7 @@ void MissileEnemy::draw(void)
 	SelectObject(App::hDC, defFont);
 	SetTextColor(App::hDC, RGB(255, 20, 20));
 
-	DrawText(App::hDC, L"|\nÅñ", -1, &objArea, DT_CENTER);
+	DrawText(App::hDC, L"ïs\nâ¬", -1, &objArea, DT_CENTER);
 	//drawDebug();
 
 

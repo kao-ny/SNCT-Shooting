@@ -29,6 +29,9 @@ void EnemyB::init(void)
 	status = STATUS::ACTIVE;
 
 	point = 765;
+
+	shootEnemy();
+	shootTimer.reset();
 }
 
 void EnemyB::update(void)
@@ -55,6 +58,14 @@ void EnemyB::update(void)
 	y += dy;
 
 	lap.reset();
+
+	// ’e‚Ì”­ŽËŠÔŠu
+	double shooted = shootTimer.get();
+	if(shooted > 0.2) {
+		shootEnemy();
+		shootTimer.reset();
+	}
+
 }
 
 void EnemyB::loadMissileEnemy(MissileEnemy* m)

@@ -113,7 +113,7 @@ void ShootingApp::keyDown(WPARAM key) {
 		break;
 	case VK_SPACE:
 		fighter.shootA();
-		enemyB[0].shootEnemy();
+		//enemyB[0].shootEnemy();
 		break;
 	case 0x53:				// S key
 		fighter.shootB();
