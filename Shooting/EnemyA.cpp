@@ -93,5 +93,6 @@ void EnemyA::draw(void)
 
 	//drawDebug();
 
-	
+	
+
 }

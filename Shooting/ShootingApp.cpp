@@ -26,12 +26,20 @@ void ShootingApp::init(void) {
 		missiles.push_back(&missileB[i]);
 		fos.push_back(&missileB[i]);
 	}
+	for(size_t i = 0; i < N_MISSILE_ENEMY; i++) {
+		for(size_t j = 0; i < N_ENEMY_B; i++) {
+			enemyB[j].loadMissileEnemy(&missileEnemy[i]);
+			enemyMissiles.push_back(&missileEnemy[i]);
+			fos.push_back(&missileEnemy[i]);
+		}
+	}
 	score.init();
 	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/chimes.wav"), TEXT("explosion"));
 	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/ir_begin.wav"), TEXT("shoot"));
 	Sound::getInstance()->registerFile(TEXT("c:/windows/Media/flourish.mid"), TEXT("bgm"));
 
-	Sound::getInstance()->request(TEXT("bgm"));
+	Sound::getInstance()->request(TEXT("bgm"));
+
 }
 
 void ShootingApp::cleanup(void) {
@@ -49,6 +57,7 @@ void ShootingApp::update(void) {
 			fos[i]->update();
 
 	// 衝突判定
+	// TODO ENEMY_MISSILE
 	for (size_t i = 0; i < enemies.size(); i++) { // すべての敵機について衝突判定
 		if (!(enemies[i]->status & FlyingObject::ACTIVE)) // アクティブでなければ
 			continue; // 判定しない
@@ -56,7 +65,8 @@ void ShootingApp::update(void) {
 			if (enemies[i]->checkCollision(missiles[j])) // 衝突していたら
 				score.add(enemies[i]->point);
 		enemies[i]->checkCollision(&fighter); // 自機との衝突判定
-	}
+	}
+
 	// キャラクターの再アクティブ化
 	for(size_t i = 0; i < enemies.size(); i++) {
 		if(!enemies[i]->status) {		// 敵機がやられたら（アクティブでなければ）
@@ -96,6 +106,7 @@ void ShootingApp::keyDown(WPARAM key) {
 		break;
 	case VK_SPACE:
 		fighter.shootA();
+		enemyB[0].shootEnemy();
 		break;
 	case 0x53:				// S key
 		fighter.shootB();

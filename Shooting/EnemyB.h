@@ -1,21 +1,23 @@
 #pragma once
 #include "Enemy.h"
-#include "MissileA.h"
+#include <vector>
+#include "MissileEnemy.h"
 
 class EnemyB : public Enemy
 {
 private:
 	double phase;
-	std::vector<MissileA*> missilesA;
+	std::vector<MissileEnemy*> missilesEnemy;
 
 public:
 	EnemyB(void);
 	~EnemyB(void);
 
 	void init(void);
-	void loadMissileA(MissileA * m);
-	void shootA(void);
 	void update(void);
 	void draw(void);
+
+	void loadMissileEnemy(MissileEnemy* m); // ミサイルmを登録する
+	void shootEnemy(void); // ミサイルを発射する
 };
 

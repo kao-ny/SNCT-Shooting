@@ -31,22 +31,6 @@ void EnemyB::init(void)
 	point = 765;
 }
 
-void EnemyB::loadMissileA(MissileA* m)
-{
-	missilesA.push_back(m);
-}
-
-void EnemyB::shootA(void)
-{
-	for(size_t i = 0; i < missilesA.size(); i++)
-		if(!(missilesA[i]->status & ACTIVE)) {
-			missilesA[i]->init();
-			missilesA[i]->fire(x, y - radius, 10, +400);
-			Sound::getInstance()->request(TEXT("shoot"));
-			return;
-		}
-}
-
 void EnemyB::update(void)
 {
 	if (status & COLLISION) { // 衝突していたら座標を更新しない
@@ -73,6 +57,22 @@ void EnemyB::update(void)
 	lap.reset();
 }
 
+void EnemyB::loadMissileEnemy(MissileEnemy* m)
+{
+	missilesEnemy.push_back(m);
+}
+
+void EnemyB::shootEnemy(void)
+{
+	for(size_t i = 0; i < missilesEnemy.size(); i++)
+		if(!(missilesEnemy[i]->status & ACTIVE)) {
+			missilesEnemy[i]->init();
+			missilesEnemy[i]->fire(x, y - radius, 0, 400);
+			// Sound::getInstance()->request(TEXT("shoot"));
+			return;
+		}
+}
+
 void EnemyB::draw(void)
 {
 	if (this->status & COLLISION) { // 衝突していたら爆発アニメーション
@@ -86,7 +86,10 @@ void EnemyB::draw(void)
 	HPEN gp = CreatePen(PS_SOLID, 0.5, RGB(0, 255, 0));
 	SelectObject(App::hDC, gp);
 	Ellipse(App::hDC, x - radius, y - radius, x + radius, y + radius);
-	DeleteObject(gp);	*/	RECT objArea;
+	DeleteObject(gp);
+	*/
+
+	RECT objArea;
 	objArea.left = x - 80;
 	objArea.top = y - 70;
 	objArea.right = x + 80;
@@ -101,6 +104,7 @@ void EnemyB::draw(void)
 	SelectObject(App::hDC, hFont);
 	SetTextColor(App::hDC, RGB(0, 0, 0));
 
-	DrawText(App::hDC, L"_∧＿∧\n| ｡　｡ 　　iヽ\n| ｨ‐ｭ. 　　!| \n| ￣ 　 　 !| \nl　　 　 　 !| \n| ＿＿＿__!| \nﾚﾚ' 　 VV\n", -1, &objArea, DT_CENTER);
+	DrawText(App::hDC, L"_∧＿∧\n| ｡　｡ 　　iヽ\n| ｨ‐ｭ. 　　!| \n| ￣ 　 　 !| \nl　　 　 　 !| \n| ＿＿＿__!| \nﾚﾚ' 　 VV\n", -1, &objArea, DT_CENTER);
+
 	//drawDebug();
 }

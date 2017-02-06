@@ -154,6 +154,7 @@
     <ClInclude Include="Missile.h" />
     <ClInclude Include="MissileA.h" />
     <ClInclude Include="MissileB.h" />
+    <ClInclude Include="MissileEnemy.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Shooting.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="MissileA.cpp" />
     <ClCompile Include="MissileB.cpp" />
+    <ClCompile Include="MissileEnemy.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Shooting.cpp" />
     <ClCompile Include="ShootingApp.cpp" />
