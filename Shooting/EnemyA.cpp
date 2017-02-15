@@ -20,7 +20,7 @@ void EnemyA::init(void)
 
 	//x = 400 + App::rand() * 300;
 	x = 80 + App::rand() * 2400;
-	y = 100 + App::rand() * 200;
+	y = 140 + App::rand() * 200;
 
 	vx = 400 + 2000 * App::rand();
 	vy = 100 + 200 * App::rand();
@@ -28,6 +28,9 @@ void EnemyA::init(void)
 	radius = 10;
 
 	point = 346;
+
+	shootEnemy();
+	shootTimer.reset();
 }
 
 void EnemyA::update(void)
@@ -53,6 +56,29 @@ void EnemyA::update(void)
 	y += dy;
 
 	lap.reset();
+
+	// ’e‚Ì”­ŽËŠÔŠu
+	double shooted = shootTimer.get();
+	if(shooted > 0.2) {
+		shootEnemy();
+		shootTimer.reset();
+	}
+}
+
+void EnemyA::loadMissileEnemy(MissileEnemy* m)
+{
+	missilesEnemy.push_back(m);
+}
+
+void EnemyA::shootEnemy(void)
+{
+	for(size_t i = 0; i < missilesEnemy.size(); i++)
+		if(!(missilesEnemy[i]->status & ACTIVE)) {
+			missilesEnemy[i]->init();
+			missilesEnemy[i]->fire(x, y - radius, 0, 400);
+			// Sound::getInstance()->request(TEXT("shoot"));
+			return;
+		}
 }
 
 void EnemyA::draw(void)
@@ -76,7 +102,7 @@ void EnemyA::draw(void)
 	objArea.right = x + 100;
 	objArea.bottom = y + 250;
 
-	HFONT defFont = CreateFont(18, 0, 0, 0, FW_DONTCARE,
+	HFONT defFont = CreateFont(16, 0, 0, 0, FW_DONTCARE,
 		FALSE, FALSE, FALSE, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 		DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,

@@ -27,10 +27,17 @@ void ShootingApp::init(void) {
 		fos.push_back(&missileB[i]);
 	}
 	for(size_t i = 0; i < N_MISSILE_ENEMY; i++) {
-		for(size_t j = 0; i < N_ENEMY_B; i++) {
-			enemyB[j].loadMissileEnemy(&missileEnemy[i]);
+		for(size_t j = 0; i < N_ENEMY_A; i++) {
+			enemyA[j].loadMissileEnemy(&missileEnemy[i]);
 			enemyMissiles.push_back(&missileEnemy[i]);
 			fos.push_back(&missileEnemy[i]);
+		}
+	}
+	for(size_t i = 0; i < N_MISSILE_ENEMY_B; i++) {
+		for(size_t j = 0; i < N_ENEMY_B; i++) {
+			enemyB[j].loadMissileEnemy(&missileEnemyB[i]);
+			enemyMissiles.push_back(&missileEnemyB[i]);
+			fos.push_back(&missileEnemyB[i]);
 		}
 	}
 	score.init();

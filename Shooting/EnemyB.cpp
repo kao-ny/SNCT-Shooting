@@ -59,13 +59,14 @@ void EnemyB::update(void)
 
 	lap.reset();
 
+	
 	// ’e‚Ì”­ŽËŠÔŠu
 	double shooted = shootTimer.get();
-	if(shooted > 0.2) {
+	if(shooted > fabs(1.2*App::rand())) {
 		shootEnemy();
 		shootTimer.reset();
 	}
-
+	
 }
 
 void EnemyB::loadMissileEnemy(MissileEnemy* m)
@@ -78,7 +79,7 @@ void EnemyB::shootEnemy(void)
 	for(size_t i = 0; i < missilesEnemy.size(); i++)
 		if(!(missilesEnemy[i]->status & ACTIVE)) {
 			missilesEnemy[i]->init();
-			missilesEnemy[i]->fire(x, y - radius, 0, 400);
+			missilesEnemy[i]->fire(x, y - radius, 0, 50);
 			// Sound::getInstance()->request(TEXT("shoot"));
 			return;
 		}
